@@ -1,6 +1,7 @@
 package com;
 
 
+import com.dotcms.pushpublish.PushPublishTest;
 import org.apache.velocity.runtime.parser.node.SimpleNodeTest;
 
 import com.dotcms.cmis.DotCMSCMISTest;
@@ -51,46 +52,47 @@ import com.dotmarketing.webdav.WebDavTest;
  */
 @RunWith (Suite.class)
 @Suite.SuiteClasses ({
-	HostAPITest.class, //Needs Enterprise License
-    LinkCheckerAPITest.class, //Needs Enterprise License
-    TemplateAPITest.class,
-    HTMLPageAPITest.class,
-    CategoryAPITest.class,
-    MenuLinkAPITest.class,
-    ContentletFactoryTest.class,
-    ContentletAPITest.class,
-    ContainerAPITest.class,
-    FieldFactoryTest.class,
-    StructureFactoryTest.class,
-    FieldAPITest.class,
-    URLMapTest.class,
-    PermissionAPITest.class,
-    PublishingEndPointAPITest.class,
-    ESContentletIndexAPITest.class,
-    DotCMSCMISTest.class,
-    WebResourceTest.class,
-    RoleResourceTest.class,
-    ESIndexSpeedTest.class,
-    PluginMergerTest.class,
-    WebDavTest.class,
-    ContentResourceTest.class,
-    RoleAPITest.class,
-    FolderAPITest.class,
-    WorkflowSearcherTest.class,
-    NotificationAPITest.class,
-    SassCompilerTest.class,
-    LessCompilerTest.class,
-    IdentifierAPITest.class,
-    ImportUtilTest.class,
-    SiteSearchAjaxActionTest.class,
-    RemotePublishAjaxActionTest.class, //Needs Enterprise License
-    CSSPreProcessServletTest.class, //Needs Enterprise License
-    ESContentFactoryImplTest.class,
-    HibernateUtilTest.class,
-    WorkflowAPITest.class,
-    ContentletAjaxTest.class,
-    SimpleNodeTest.class,
-    DbConnectionFactoryUtilTest.class
+        HostAPITest.class, //Needs Enterprise License
+        LinkCheckerAPITest.class, //Needs Enterprise License
+        TemplateAPITest.class,
+        HTMLPageAPITest.class,
+        CategoryAPITest.class,
+        MenuLinkAPITest.class,
+        ContentletFactoryTest.class,
+        ContentletAPITest.class,
+        ContainerAPITest.class,
+        FieldFactoryTest.class,
+        StructureFactoryTest.class,
+        FieldAPITest.class,
+        URLMapTest.class,
+        PermissionAPITest.class,
+        PublishingEndPointAPITest.class,
+        ESContentletIndexAPITest.class,
+        DotCMSCMISTest.class,
+        WebResourceTest.class,
+        RoleResourceTest.class,
+        ESIndexSpeedTest.class,
+        PluginMergerTest.class,
+        WebDavTest.class,
+        ContentResourceTest.class,
+        RoleAPITest.class,
+        FolderAPITest.class,
+        WorkflowSearcherTest.class,
+        NotificationAPITest.class,
+        SassCompilerTest.class,
+        LessCompilerTest.class,
+        IdentifierAPITest.class,
+        ImportUtilTest.class,
+        SiteSearchAjaxActionTest.class,
+        RemotePublishAjaxActionTest.class, //Needs Enterprise License
+        CSSPreProcessServletTest.class, //Needs Enterprise License
+        ESContentFactoryImplTest.class,
+        HibernateUtilTest.class,
+        WorkflowAPITest.class,
+        ContentletAjaxTest.class,
+        SimpleNodeTest.class,
+        DbConnectionFactoryUtilTest.class,
+        PushPublishTest.class
 })
 public class AllTestsSuite {
 
