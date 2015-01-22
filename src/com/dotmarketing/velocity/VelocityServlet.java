@@ -13,6 +13,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.net.URLDecoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -139,13 +141,17 @@ public abstract class VelocityServlet extends HttpServlet {
 							: req.getRequestURI()
 				, "UTF-8");
 	
-		
+
 
         RequestWrapper request  = new RequestWrapper( req );
         request.setRequestUri(uri);
-		
+	
 
-        
+		String threadName = Thread.currentThread().getName();
+		SimpleDateFormat df =  new SimpleDateFormat("MM-dd-yyyy hh:mm:ss z");
+
+
+        String startTime = df.format(new java.util.Date());
         
 		if (DbConnectionFactory.isMsSql() && LicenseUtil.getLevel() < 299) {
 			request.getRequestDispatcher("/portal/no_license.jsp").forward(request, response);
@@ -199,6 +205,18 @@ public abstract class VelocityServlet extends HttpServlet {
 			LanguageWebAPI langWebAPI = WebAPILocator.getLanguageWebAPI();
 			langWebAPI.checkSessionLocale(request);
 
+			
+			StringWriter sw = new StringWriter();
+			sw.append(threadName);
+
+			 sw.append(" Page:" );
+			 sw.append(hostWebAPI.getCurrentHost(request).getHostname());
+			 sw.append(uri);
+			 sw.append( " | Admin:");
+			 sw.append( String.valueOf(ADMIN_MODE));
+			 sw.append( " | ST:" + startTime);
+		    Thread.currentThread().setName(sw.toString());
+			
 			if (PREVIEW_MODE && ADMIN_MODE) {
 				// preview mode has the left hand menu and edit buttons on the
 				// working page
@@ -262,6 +280,7 @@ public abstract class VelocityServlet extends HttpServlet {
 				out.println("Error on template:" + request.getRequestURI() + request.getQueryString());
 			}
 		} finally {
+			
 			// catchall
 			// added finally because of
 			// http://jira.dotmarketing.net/browse/DOTCMS-1334
@@ -271,6 +290,7 @@ public abstract class VelocityServlet extends HttpServlet {
 				Logger.error(this, e.getMessage(), e);
 			}
 			DbConnectionFactory.closeConnection();
+		    Thread.currentThread().setName(threadName);
 			velocityCtx.remove();
 		}
 		if (profileTime != null) {
@@ -1229,5 +1249,21 @@ public abstract class VelocityServlet extends HttpServlet {
 		sb.append("_" + page.getModDate().getTime());
 		return sb.toString();
 	}
+	
+	
+	private void setThreadName(String uri, HttpServletRequest request){
+		
+
+
+		  
+
+
+		
+		
+	}
+	
+	
+	
+	
 
 }
