@@ -592,6 +592,27 @@ public class ContentResource extends WebResource {
 				else
 					jo.put(key, map.get(key));
 		}
+		boolean live = true;
+		boolean ADMIN_MODE = (request.getSession().getAttribute(com.dotmarketing.util.WebKeys.ADMIN_MODE_SESSION) != null);
+		boolean PREVIEW_MODE = ((request.getSession().getAttribute(com.dotmarketing.util.WebKeys.PREVIEW_MODE_SESSION) != null) && ADMIN_MODE);
+		boolean EDIT_MODE = ((request.getSession().getAttribute(com.dotmarketing.util.WebKeys.EDIT_MODE_SESSION) != null) && ADMIN_MODE);
+		if (EDIT_MODE || PREVIEW_MODE) {
+			live = false;
+		}
+		try{
+			User user = null;
+			user = com.liferay.portal.util.PortalUtil.getUser(request);
+			List<Category> cats = APILocator.getCategoryAPI().getParents(con, false, user, live);
+			JSONArray array = new JSONArray();
+			for(Category c : cats){
+				JSONObject cat = new JSONObject(c.getMap());
+				array.put(cat);
+			}
+			
+			jo.put("categories", array);
+		}catch(Exception e){
+			throw new IOException(e.getMessage(), e);
+		}
 
 		for(Field f : FieldsCache.getFieldsByStructureInode(s.getInode())){
 			if(f.getFieldType().equals(Field.FieldType.BINARY.toString())){
