@@ -222,7 +222,11 @@ public class FieldFactory {
 
 	public static void deleteFieldVariable(FieldVariable fieldVar){
 		try {
+			Field proxy = new Field();
+			proxy.setInode(fieldVar.getFieldId());
 			HibernateUtil.delete(fieldVar);
+			FieldsCache.removeFieldVariables(proxy);
+
 		} catch (DotHibernateException e) {
 			Logger.error(FieldFactory.class, e.getMessage());
 		}
@@ -257,7 +261,7 @@ public class FieldFactory {
 		List<FieldVariable> result = null;
 
 		result = FieldsCache.getFieldVariables(field);
-		if(result ==null || result.isEmpty()){
+		if(result ==null ){
 			HibernateUtil dh = new HibernateUtil(FieldVariable.class);
 
 			try {
