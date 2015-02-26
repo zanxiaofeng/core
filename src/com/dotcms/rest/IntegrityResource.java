@@ -817,7 +817,8 @@ public class IntegrityResource extends WebResource {
                         JSONObject columnsContent = new JSONObject();
 
                         for (String keyName : result.keySet()) {
-                            columnsContent.put(keyName, result.get(keyName));
+                            if(result.get(keyName)!=null && !result.get(keyName).equals(""))
+                                columnsContent.put(keyName, result.get(keyName));
                         }
 
                         values.put(columnsContent);
