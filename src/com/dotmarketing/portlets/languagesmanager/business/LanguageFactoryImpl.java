@@ -494,6 +494,7 @@ public class LanguageFactoryImpl extends LanguageFactory {
 		}
 
 		try {
+		/* removed by davis zan	
     		for(Map.Entry<String, String> entry : generalKeys.entrySet()) {
     			if(entry ==null || entry.getKey() ==null)
     				continue;
@@ -505,7 +506,7 @@ public class LanguageFactoryImpl extends LanguageFactory {
     				continue;
     			if(!entry.getKey().matches("[A-Za-z0-9-_\\.]+"))
     				throw new DotDataException("Invalid key :'" +entry.getKey()  +"' submitted, only keys that match [A-Za-z0-9-_\\.]+ are allowed");
-    		}
+    		}*/
     		if((toDeleteKeys!= null && toDeleteKeys.size()>0) || (specificKeys!=null && specificKeys.size()>0)){
     			saveLanguageKeys(langCodeAndCountryCode, specificKeys, toDeleteKeys);
     		}
